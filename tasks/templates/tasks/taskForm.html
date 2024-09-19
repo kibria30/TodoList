@@ -1,0 +1,31 @@
+{% extends "tasks/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <div class="container p-5">
+        <h3 class="mb-5 text-center">Enter Task Details:</h3>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input type="submit" class="btn btn-outline-info">
+            <a href="/" class="btn btn-outline-light pl-5">Cancel</a>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+
+{% comment %} <form method="post">
+    {% csrf_token %}
+    <label for="title">Your Name:</label>
+    {{ form.title }}
+    <label for="description">Your Email:</label>
+    {{ form.description }}
+    <label for="complete">Your Message:</label>
+    {{ form.complete }}
+    <button type="submit">Submit</button>
+</form> {% endcomment %}

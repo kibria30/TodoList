@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+{% load static %}
+{% block loadStyle %}
+    <link rel="stylesheet" href="{% static 'tasks/detailView.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container my-5">
+        <div class="card card-custom p-3 text-light" style="background-color: #3b3b3b">
+          <div class="card-body">
+            <h5 class="card-title">{{ object.title }}</h5>
+            <p class="card-text">{{ object.description }}</p>
+    
+            <div class="toggle-complete">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="taskStatus">
+                <label class="form-check-label" for="taskStatus">{{ object.complete }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

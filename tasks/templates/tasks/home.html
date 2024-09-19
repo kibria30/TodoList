@@ -1,0 +1,72 @@
+{% extends "tasks/base.html" %}
+
+{% block content %}
+    <nav class="container container-fluid bg-dark fixed-top py-3 pt-4">
+        <div class="d-flex justify-items-between align-items-center">
+            <p class="h1 text-center ms-3 me-5">
+                Welcome to
+                <span class='text-warning'> Todo List</span>
+            </p>
+            <a class="mx-5 btn btn-lg btn-outline-light" href="summary/">Summary</a>
+        </div>
+        
+    </nav>
+
+    <section class="container">
+        <div class="grid-container">
+            {% for task in tasks %}
+                {% if not task.complete %}
+                    <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
+                        <div class="d-flex justify-content-center">
+                            <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        
+                                        <h4 class="card-title mb-4">{{ task.title }}</h4>
+                                        
+                                        <div class="pb-4">
+                                            <button type="button" class="btn-close" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <p class="card-text text-limitness">
+                                        {{ task.description }}
+                                    </p>
+                                    {% comment %} <a class="btn btn-danger">Do it</a> {% endcomment %}
+                                    <button method="post" type="submit" value={{ task.id }} class="btn btn-danger">Do it</button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                {% endif %}
+
+                {% if task.complete %}
+                
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
+                            <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <h4 class="card-title mb-4">{{ task.title }} <span class="badge text-bg-success fs-6 fw-normal">Completed</span></h4>
+                                        <div class="pb-4">
+                                            <button type="button" class="btn-close" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <p class="card-text text-limitness">
+                                       {{ task.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <a href="task/" class="btn btn-lg btn-primary text-light" style="position: fixed; bottom: 70px; right: 70px; z-index: 1000;">Add Task</a>
+    </section>
+
+    <div class="mb-5"></div>
+
+{% endblock %}
