@@ -1,18 +1,18 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
     justify-content: space-between;
-    grid-row-gap: 0px;
+    grid-row-gap: 30px;
     padding-top: 130px;
 }
 
-.text-limitness {
+/* .text-limitness {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     line-clamp: 3;
     -webkit-box-orient: vertical;
-}
+} */
 
 @media (min-width: 720px) {
     .grid-container {

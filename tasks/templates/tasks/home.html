@@ -1,5 +1,7 @@
 {% extends "tasks/base.html" %}
 
+{% block title %} Home {% endblock %}
+
 {% block content %}
     <nav class="container container-fluid bg-dark fixed-top py-3 pt-4">
         <div class="d-flex justify-items-between align-items-center">
@@ -16,9 +18,9 @@
         <div class="grid-container">
             {% for task in tasks %}
                 {% if not task.complete %}
-                    <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
-                        <div class="d-flex justify-content-center">
-                            <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                    <div class="d-flex justify-content-center">
+                        <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                            <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
                                 <div class="card-body">
                                     <div class="d-flex flex-row justify-content-between align-items-center">
                                         
@@ -28,23 +30,21 @@
                                             <button type="button" class="btn-close" aria-label="Close"></button>
                                         </div>
                                     </div>
-                                    <p class="card-text text-limitness">
+                                    <p class="card-text">
                                         {{ task.description }}
                                     </p>
                                     {% comment %} <a class="btn btn-danger">Do it</a> {% endcomment %}
                                     <button method="post" type="submit" value={{ task.id }} class="btn btn-danger">Do it</button>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-
+                    </div>
                 {% endif %}
 
                 {% if task.complete %}
-                
                     <div class="d-flex justify-content-center">
-                        <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
-                            <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                        <div class="card card-custom text-light" style="width: 18rem; background-color: #3b3b3b">
+                            <a href="{% url 'task-detail' task.id %}" class="text-decoration-none text-reset">
                                 <div class="card-body">
                                     <div class="d-flex flex-row justify-content-between align-items-center">
                                         <h4 class="card-title mb-4">{{ task.title }} <span class="badge text-bg-success fs-6 fw-normal">Completed</span></h4>
@@ -52,17 +52,16 @@
                                             <button type="button" class="btn-close" aria-label="Close"></button>
                                         </div>
                                     </div>
-                                    <p class="card-text text-limitness">
+                                    <p class="card-text">
                                        {{ task.description }}
                                     </p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 {% endif %}
 
             {% endfor %}
-
         </div>
         <a href="task/" class="btn btn-lg btn-primary text-light" style="position: fixed; bottom: 70px; right: 70px; z-index: 1000;">Add Task</a>
     </section>
